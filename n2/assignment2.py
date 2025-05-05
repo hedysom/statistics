@@ -75,17 +75,19 @@ plt.show()
 # Start
 
 r, p_value = stats.pearsonr(mpg["weight"], mpg["mpg"])
+
 # Stop
 print(f"[MPG Dataset] Correlation coefficient (r): {r:.3f}")
-print(f"[MPG Dataset] P-value: {p_value:.3f}")
+print(f"[MPG Dataset] P-value: {p_value:.4f}")
 
 
-"""
 # c) Fit regression line
 
 # calculate the regression line (use the stats.linregress function that returns intercept and slope)
 # Start
-
+slope, intercept, r, p, se = stats.linregress(mpg["weight"], mpg["mpg"])
+print(f"[MPG Dataset] Correlation coefficient (r): {r:.3f}")
+print(f"[MPG Dataset] P-value: {p:.4f}")
 
 # Stop
 
@@ -99,13 +101,17 @@ sns.scatterplot(data=mpg, x="weight", y="mpg", label="Data Points", alpha=0.6)
 # write the expression for line = ?
 # Start
 
-line =
+line = intercept + slope * mpg["weight"]
 
 # Stop
 
 
-plt.plot(mpg['weight'], line, color='red', label=f'Fitted Line: mpg = {
-         intercept:.2f} + {slope:.5f} * weight')
+plt.plot(
+    mpg["weight"],
+    line,
+    color="red",
+    label=f"Fitted Line: mpg = {intercept:.2f} + {slope:.5f} * weight",
+)
 plt.title("Linear Fit: MPG vs Weight with Fitted Line")
 plt.xlabel("Weight")
 plt.ylabel("Miles per Gallon")
@@ -119,7 +125,7 @@ weight_pred = 3200
 # write the expression for mpg_pred = ?
 # Start
 
-mpg_pred =
+mpg_pred = intercept + slope * weight_pred
 
 # Stop
 
@@ -129,6 +135,7 @@ print(f"[MPG Dataset] Predicted MPG for weight 3200 lbs: {mpg_pred:.2f}")
 # calculate the std (s_y) and change (pred_change) of mpg
 # Start
 
+"""
 s_y =
 pred_change =
 
