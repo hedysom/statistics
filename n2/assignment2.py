@@ -135,23 +135,25 @@ print(f"[MPG Dataset] Predicted MPG for weight 3200 lbs: {mpg_pred:.2f}")
 # calculate the std (s_y) and change (pred_change) of mpg
 # Start
 
-"""
-s_y =
-pred_change =
+s_y = mpg["mpg"].std()
+pred_change = r * s_y
 
 # Stop
 
-print(f"[MPG Dataset] Estimated change in mpg (rule of thumb): {
-      pred_change:.2f} (for +1 std in weight)")
+print(
+    f"[MPG Dataset] Estimated change in mpg (rule of thumb): {
+        pred_change:.2f
+    } (for +1 std in weight)"
+)
 
 # Compact rule of thumb prediction
 
 # calculate the following values
 # Start
-mean_weight =
-std_weight =
-mean_mpg =
-z_x =
+mean_weight = mpg["weight"].mean()
+std_weight = mpg["weight"].std()
+mean_mpg = mpg["mpg"].mean()
+z_x = (3200 - mean_weight) / std_weight
 # Stop
 z_y = r * z_x
 mpg_est = mean_mpg + z_y * s_y
@@ -159,6 +161,7 @@ mpg_est = mean_mpg + z_y * s_y
 print(f"[MPG Dataset] Compact rule of thumb estimate: {mpg_est:.2f}")
 
 
+"""
 # ========================
 # Task 2: Tips Dataset
 # ========================
