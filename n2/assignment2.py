@@ -32,8 +32,7 @@ print("[MPG Dataset] Summary Statistics:")
 # Do simply describe
 print(mpg.describe())
 
-"""
-#or use this for each column like mpg, cilinders etc.
+# or use this for each column like mpg, cilinders etc.
 mean = mpg["mpg"].mean()
 median = mpg["mpg"].median()
 min_val = mpg["mpg"].min()
@@ -55,11 +54,7 @@ print("2nd quartile (50%):", round(q2, 2))
 print("3rd quartile (75%):", round(q3, 2))
 
 # Stop
-"""
-"""
-# Stop
 
-"""
 # b) Scatter plot: Weight vs MPG
 plt.figure(figsize=(8, 6))
 sns.scatterplot(data=mpg, x="weight", y="mpg")
@@ -160,8 +155,6 @@ mpg_est = mean_mpg + z_y * s_y
 
 print(f"[MPG Dataset] Compact rule of thumb estimate: {mpg_est:.2f}")
 
-
-"""
 # ========================
 # Task 2: Tips Dataset
 # ========================
@@ -193,35 +186,39 @@ plt.show()
 
 # calculate the correlation coefficient r using stats.pearsonr
 # Start
-
+r, p_value = stats.pearsonr(tips["total_bill"], tips["tip"])
 # Stop
 
 print(f"[Tips Dataset] Correlation coefficient (r) between Total Bill and Tip: {
       r:.3f}")
 
 
-X = tips[['total_bill', 'size']]
-y = tips['tip']
+X = tips[["total_bill", "size"]]
+y = tips["tip"]
 
 model = LinearRegression()
 model.fit(X, y)
 
 
 # Start
-intercept =
-coefficients =
+intercept = model.intercept_
+coefficients = model.coef_
 # Stop
 
 r_squared = model.score(X, y)
 
-print(f"[Tips Dataset] Regression equation: tip = {
-      intercept:.2f} + {coefficients[0]:.2f} * total_bill + {coefficients[1]:.2f} * size")
+print(
+    f"[Tips Dataset] Regression equation: tip = {intercept:.2f} + {
+        coefficients[0]:.2f
+    } * total_bill + {coefficients[1]:.2f} * size"
+)
 print(f"[Tips Dataset] R^2 value: {r_squared:.3f}")
 
 # Predict tip for total_bill = 25 and size = 4
 
 # Start
-predicted_tip =
+predicted_tip = model.predict([[25, 4]])
+predicted_tip = predicted_tip[0]
 # Stop
 print(f"[Tips Dataset] Predicted tip for total_bill=25 and size=4: {
       predicted_tip:.2f}")
@@ -229,36 +226,38 @@ print(f"[Tips Dataset] Predicted tip for total_bill=25 and size=4: {
 
 # c) 3D scatter plot
 fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(tips['total_bill'], tips['tip'],
-           tips['size'], c='blue', marker='o', alpha=0.6)
-ax.set_xlabel('Total Bill')
-ax.set_ylabel('Tip')
-ax.set_zlabel('Size')
-ax.set_title('3D Scatter Plot: Total Bill, Tip, and Size')
+ax = fig.add_subplot(111, projection="3d")
+ax.scatter(
+    tips["total_bill"], tips["tip"], tips["size"], c="blue", marker="o", alpha=0.6
+)
+ax.set_xlabel("Total Bill")
+ax.set_ylabel("Tip")
+ax.set_zlabel("Size")
+ax.set_title("3D Scatter Plot: Total Bill, Tip, and Size")
 plt.show()
 
 # add regression plane
-X_plane = np.array([tips['total_bill'], tips['size']]).T
-y_plane = tips['tip']
+X_plane = np.array([tips["total_bill"], tips["size"]]).T
+y_plane = tips["tip"]
 reg = LinearRegression()
 reg.fit(X_plane, y_plane)
 
 total_bill_range = np.linspace(
-    tips['total_bill'].min(), tips['total_bill'].max(), 10)
-size_range = np.linspace(tips['size'].min(), tips['size'].max(), 10)
+    tips["total_bill"].min(), tips["total_bill"].max(), 10)
+size_range = np.linspace(tips["size"].min(), tips["size"].max(), 10)
 total_bill_grid, size_grid = np.meshgrid(total_bill_range, size_range)
-tip_grid = reg.predict(np.c_[total_bill_grid.ravel(
-), size_grid.ravel()]).reshape(total_bill_grid.shape)
+tip_grid = reg.predict(np.c_[total_bill_grid.ravel(), size_grid.ravel()]).reshape(
+    total_bill_grid.shape
+)
 
 fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(tips['total_bill'], tips['tip'],
-           tips['size'], c='blue', marker='o', alpha=0.6)
-ax.plot_surface(total_bill_grid, size_grid, tip_grid, color='red', alpha=0.3)
-ax.set_xlabel('Total Bill')
-ax.set_ylabel('Tip')
-ax.set_zlabel('Size')
-ax.set_title('3D Regression Plane: Total Bill, Tip, and Size')
+ax = fig.add_subplot(111, projection="3d")
+ax.scatter(
+    tips["total_bill"], tips["tip"], tips["size"], c="blue", marker="o", alpha=0.6
+)
+ax.plot_surface(total_bill_grid, size_grid, tip_grid, color="red", alpha=0.3)
+ax.set_xlabel("Total Bill")
+ax.set_ylabel("Tip")
+ax.set_zlabel("Size")
+ax.set_title("3D Regression Plane: Total Bill, Tip, and Size")
 plt.show()
-"""
