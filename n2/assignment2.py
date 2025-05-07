@@ -86,8 +86,7 @@ print(f"[MPG Dataset] P-value: {p:.4f}")
 
 # Stop
 
-print(f"[MPG Dataset] Regression line: mpg = {
-      intercept:.2f} + {slope:.5f} * weight")
+print(f"[MPG Dataset] Regression line: mpg = {intercept:.2f} + {slope:.5f} * weight")
 
 # Overlay fitted regression line
 plt.figure(figsize=(8, 6))
@@ -187,11 +186,12 @@ plt.show()
 # calculate the correlation coefficient r using stats.pearsonr
 # Start
 r, p_value = stats.pearsonr(tips["total_bill"], tips["tip"])
+r1, p_value1 = stats.pearsonr(tips["size"], tips["tip"])
 # Stop
 
-print(f"[Tips Dataset] Correlation coefficient (r) between Total Bill and Tip: {
-      r:.3f}")
+print(f"[Tips Dataset] Correlation coefficient (r) between Total Bill and Tip: {r:.3f}")
 
+print(f"[Tips Dataset] Correlation coefficient (r) between Size and Tip: {r1:.3f}")
 
 X = tips[["total_bill", "size"]]
 y = tips["tip"]
@@ -220,8 +220,7 @@ print(f"[Tips Dataset] R^2 value: {r_squared:.3f}")
 predicted_tip = model.predict([[25, 4]])
 predicted_tip = predicted_tip[0]
 # Stop
-print(f"[Tips Dataset] Predicted tip for total_bill=25 and size=4: {
-      predicted_tip:.2f}")
+print(f"[Tips Dataset] Predicted tip for total_bill=25 and size=4: {predicted_tip:.2f}")
 
 
 # c) 3D scatter plot
@@ -242,8 +241,7 @@ y_plane = tips["tip"]
 reg = LinearRegression()
 reg.fit(X_plane, y_plane)
 
-total_bill_range = np.linspace(
-    tips["total_bill"].min(), tips["total_bill"].max(), 10)
+total_bill_range = np.linspace(tips["total_bill"].min(), tips["total_bill"].max(), 10)
 size_range = np.linspace(tips["size"].min(), tips["size"].max(), 10)
 total_bill_grid, size_grid = np.meshgrid(total_bill_range, size_range)
 tip_grid = reg.predict(np.c_[total_bill_grid.ravel(), size_grid.ravel()]).reshape(
