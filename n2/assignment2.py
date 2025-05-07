@@ -31,7 +31,7 @@ print("[MPG Dataset] Summary Statistics:")
 
 # Do simply describe
 print(mpg.describe())
-
+"""
 # or use this for each column like mpg, cilinders etc.
 mean = mpg["mpg"].mean()
 median = mpg["mpg"].median()
@@ -52,7 +52,7 @@ print("Std Dev:", round(std_dev, 2))
 print("1st quartile (25%):", round(q1, 2))
 print("2nd quartile (50%):", round(q2, 2))
 print("3rd quartile (75%):", round(q3, 2))
-
+"""
 # Stop
 
 # b) Scatter plot: Weight vs MPG
